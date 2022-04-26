@@ -51,7 +51,7 @@ var ads = [
     {
         name: "ad5",
         templateUrl: "templates/templateB.html",
-        texts: ["Text 1", "Text 2", "Text 3", "Text 4", "Text 5", "Text 6", "Text 7"],
+        texts: ["לכו תלמדו מדעי המחשב", "סתם לא", "סתם כן", "זה לא כיף בכלל", "אבל", "אחרי התואר", "תעשו שקים💰💰💰💰💰💰"],
         imagesUrl: ["images/img1.jpg", "images/img2.jpg"],
         days: [false, true, true, true, false, false, false],
         hours: [1, 23],
@@ -66,20 +66,19 @@ function hourCheck(index, date){
     return ads[index].hours[0]<= date.getHours() && ads[index].hours[1]>date.getHours();
 }
 
-function dateChecker(index){
-    var currentAds;
+// var currentAds = [];
+
+function dateChecker(index) {
     var date = new Date();
-    if (ads[index].days[date.getDay()]){
+    if (ads[index].days[date.getDay()]) {
         if (ads[index].fromDate[2] <= date.getFullYear() && ads[index].toDate[2] >= date.getFullYear()) {
-            if(ads[index].fromDate[1]<=date.getMonth()+1 && date.getMonth()+1<=ads[index].toDate[1]){
-                if(ads[index].fromDate[1] == date.getMonth() + 1 && ads[index].fromDate[0] >= date.getDay()){
-                    return hourCheck(index, date);
-                }
-                else if(ads[index].toDate[1] == date.getMonth() + 1 && ads[index].fromDate[0] <= date.getDay()){
-                    return hourCheck(index, date);
-                }
-                else{
-                    return hourCheck(index, date);
+            if (ads[index].fromDate[1] <= date.getMonth() + 1 && date.getMonth() + 1 <= ads[index].toDate[1]) {
+                if (ads[index].fromDate[1] == date.getMonth() + 1 && ads[index].fromDate[0] >= date.getDay()) {
+                    return (hourCheck(index, date));
+                } else if (ads[index].toDate[1] == date.getMonth() + 1 && ads[index].fromDate[0] <= date.getDay()) {
+                    return (hourCheck(index, date));
+                } else {
+                    return (hourCheck(index, date));
                 }
             }
         }
@@ -100,43 +99,130 @@ function dateChecker(index){
 //     i = i % ads.length;
 // }
 
-for (let i = 0; i < ads.length; i++) {
+// for (let i = 0; i < ads.length; i++) {
+//     console.log(i);
+//     if (dateChecker(i)){
+//         console.log(i);
+//         $(document).ready( function () {
+//             $('#style').load(ads[i].templateUrl);
+//             var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
+//             console.log(dispText);
+//             console.log(i);
+//             $('#texts').html(dispText);
+//             var images = "<img src=" + ads[i].imagesUrl.join("> <img src=") + ">";
+//
+//             console.log(" " + i +" "+ images);
+//             $('#images').html(images);
+//         });
+//     }
+// }
+
+// function display(i){
+//     console.log(i);
+//     if (dateChecker(i)){
+//         console.log(i);
+//         $(document).ready( function () {
+//             $('#style').load(ads[i].templateUrl);
+//             var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
+//             console.log(dispText);
+//             console.log(i);
+//             $('#texts').html(dispText);
+//             var images = "<img src=" + ads[i].imagesUrl.join("> <img src=") + ">";
+//
+//             console.log(" " + i +" "+ images);
+//             $('#images').html(images);
+//         });
+//     }
+//     setTimeout(display, )
+// }
+
+
+
+// // maybe this?:
+//
+// var i=0;
+//
+// function display(i) {
+//     $(document).ready(() => {
+//         $('#style').load(ads[i].templateUrl);
+//         var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
+//         console.log(dispText);
+//         console.log(i);
+//         $('#texts').html(dispText);
+//         var images = "<img src=" + ads[i].imagesUrl.join("> <img src=") + ">";
+//
+//         console.log(" " + i + " " + images);
+//         $('#images').html(images);
+//     });
+//     i++;
+//     i = i % currentAds.length;
+//     setTimeout(display, 1000*ads[i].timeDuration, i);
+// }
+//
+// for (let j = 0; j < ads.length; j++) {
+//     dateChecker(j);
+// }
+// console.log(currentAds);
+// display(i);
+
+var i=0;
+
+function adDisplay() {
     console.log(i);
-    if (dateChecker(i)){
-        console.log(i);
-        $(document).ready( function () {
+    if (dateChecker(i)) {
+        $(document).ready(function () {
             $('#style').load(ads[i].templateUrl);
             var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
             console.log(dispText);
             console.log(i);
             $('#texts').html(dispText);
             var images = "<img src=" + ads[i].imagesUrl.join("> <img src=") + ">";
-
-            console.log(" " + i +" "+ images);
+            console.log(" " + i + " " + images);
             $('#images').html(images);
         });
+
+        setTimeout(function () {
+            i++;
+            i = i % ads.length;
+            console.log("next ad");
+            adDisplay(i);
+        }, ads[i].timeDuration * 1000);
+    }
+    else{
+        setTimeout(function () {
+            i++;
+            i = i % ads.length;
+            console.log("not display, next ad");
+            adDisplay(i);
+        }, 0);
     }
 }
 
-var index = 0;
+adDisplay();
 
-function display(i){
-    console.log(i);
-    if (dateChecker(i)){
-        console.log(i);
-        $(document).ready( function () {
-            $('#style').load(ads[i].templateUrl);
-            var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
-            console.log(dispText);
-            console.log(i);
-            $('#texts').html(dispText);
-            var images = "<img src=" + ads[i].imagesUrl.join("> <img src=") + ">";
 
-            console.log(" " + i +" "+ images);
-            $('#images').html(images);
-        });
-    }
-    setTimeout(display, )
-}
 
-setTimeout()
+
+
+
+
+// function dispp(k) {
+//     for (let i = k; i < ads.length; i++) {
+//         console.log(i);
+//         if (dateChecker(i)) {
+//             console.log(i);
+//             $(document).ready(function () {
+//                 $('#style').load(ads[i].templateUrl);
+//                 var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
+//                 console.log(dispText);
+//                 console.log(i);
+//                 $('#texts').html(dispText);
+//                 var images = "<img src=" + ads[i].imagesUrl.join("> <img src=") + ">";
+//
+//                 console.log(" " + i + " " + images);
+//                 $('#images').html(images);
+//             });
+//         }
+//     }
+//     setTimeout(dispp, 1000*ads[i].timeDuration, i+1);
+// }
