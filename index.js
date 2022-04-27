@@ -171,6 +171,7 @@ function adDisplay() {
     console.log(i);
     if (dateChecker(i)) {
         $(document).ready(function () {
+            $('title').html(ads[i].name);
             $('#style').load(ads[i].templateUrl);
             var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
             console.log(dispText);
