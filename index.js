@@ -2,7 +2,7 @@ var ads = [
     {
         name: "ad1",
         templateUrl: "templates/templateA.html",
-        texts: ["Text 1", "Text 2", "Text 3", "Text 4"],
+        texts: ["טוק טוק", "מי שם", "מטלה", "חחחחחחחחחחחחח"],
         imagesUrl: ["images/img1.jpg", "images/img2.jpg"],
         days: [false, true, false, true, false, false, false],
         hours: [6, 12],
@@ -15,8 +15,8 @@ var ads = [
     {
         name: "ad2",
         templateUrl: "templates/templateB.html",
-        texts: ["Text 1", "Text 2", "Text 3", "Text 4", "Text 5", "Text 6", "Text 7", "Text 8", "Text 9", "Text 10"],
-        imagesUrl: ["images/img1.jpg"],
+        texts: ["בוקר", "ציח וצח", "צוהריים ", "שאכט", "ערב", "קרחן", "איי אמ", "ליבינג דה דרים", "ישתי בלעדייך", "ישתי ברמות"],
+        imagesUrl: ["https://parashat.co.il/wp-content/uploads/2021/01/16.png"],
         days: [false, false, true, true, false, false, false],
         hours: [10, 16],
         fromDate: [1, 3, 2022],
@@ -39,7 +39,7 @@ var ads = [
     {
         name: "ad4",
         templateUrl: "templates/templateA.html",
-        texts: ["Text 1", "Text 2"],
+        texts: ["שבת שלום לכולם", "צום קל לצמים!!!!!!"],
         imagesUrl: [],
         days: [false, true, false, false, false, false, false],
         hours: [15, 19],
@@ -176,7 +176,7 @@ function adDisplay() {
             console.log(dispText);
             console.log(i);
             $('#texts').html(dispText);
-            var images = "<img src=" + ads[i].imagesUrl.join("> <img src=") + ">";
+            var images = "<img alt='picture' src=" + ads[i].imagesUrl.join("> <img src=") + " alt='picture'>";
             console.log(" " + i + " " + images);
             $('#images').html(images);
         });
