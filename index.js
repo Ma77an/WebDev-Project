@@ -173,13 +173,18 @@ function adDisplay() {
         $(document).ready(function () {
             $('title').html(ads[i].name);
             $('#style').load(ads[i].templateUrl);
-            var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
-            console.log(dispText);
-            console.log(i);
-            $('#texts').html(dispText);
-            var images = "<img alt='picture' src=" + ads[i].imagesUrl.join("> <img src=") + " alt='picture'>";
-            console.log(" " + i + " " + images);
-            $('#images').html(images);
+            if(ads[i].imagesUrl.length>0){
+                var dispText = "<p>" + ads[i].texts.join("</p><p>") + "</p>";
+                console.log(dispText);
+                console.log(i);
+                $('#texts').html(dispText);
+            }
+
+            if(ads[i].imagesUrl.length>0){
+                var images = "<img alt='picture' src=" + ads[i].imagesUrl.join("> <img src=") + " alt='picture'>";
+                console.log(" " + i + " " + images);
+                $('#images').html(images);
+            }
         });
 
         setTimeout(function () {
