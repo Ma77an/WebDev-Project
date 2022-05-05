@@ -1,3 +1,6 @@
+// Shani Yamin - 318014925
+// Matan Gabso - 208233403
+
 var ads = [
     {
         name: "ad1",
